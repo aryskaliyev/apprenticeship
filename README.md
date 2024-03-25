@@ -37,9 +37,20 @@
 	- Check if the repo follows a versioning scheme to manage releases and backwards compatibility
 
 ## Golang OCR tools:
-- gosseract
+- gosseract - tesseract wrapper (cpp)
 	- 2.4k
 	- Issues: open=22/closed=155
 	- Pull requests: open=1/closed=128
+	- Contributors: 29i
+	- Last commit: 2 weeks ago
+	- License: MIT
+	- Documentation: Good
+	- Github Actions: BSD Test, Docker Test, Go Test, Windows Test 
+	- Community: Discussions (did not find)
+	- Dependencies: Minimum
+	- Demo: Yes
+	- Code Quality:
+	- Versioning: Yes
 
+- gocr - tesseract wrapper
 ## Top 3 Golang OCR tools:
