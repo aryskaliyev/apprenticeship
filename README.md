@@ -36,10 +36,10 @@
 - **12. Versioning**
 	- Check if the repo follows a versioning scheme to manage releases and backwards compatibility
 
-## OCR tools: libraries and frameworks
-
-## OCR services
-
-## Golang OCR tools
+## Golang OCR tools:
+- gosseract
+	- 2.4k
+	- Issues: open=22/closed=155
+	- Pull requests: open=1/closed=128
 
 ## Top 3 Golang OCR tools:
