@@ -36,6 +36,11 @@
 - **12. Versioning**
 	- Check if the repo follows a versioning scheme to manage releases and backwards compatibility
 
+### OCR tools:
+- Tesseract OCR
+- Keras
+- Tensorflow
+
 ## Golang OCR tools:
 - gosseract - tesseract wrapper (cpp)
 	- 2.4k
