@@ -17,7 +17,7 @@ func ApplyBinarization(blurred gocv.Mat) (gocv.Mat, error) {
 	binary := gocv.NewMat()
 	gocv.Threshold(blurred, &binary, thresh, maxval, gocv.ThresholdBinary)
 
-	if binary == nil {
+	if binary.Empty() {
 		return gocv.Mat{}, fmt.Errorf("failed to apply binarization")
 	}
 	return binary, nil
