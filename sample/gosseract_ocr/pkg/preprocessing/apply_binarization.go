@@ -5,14 +5,14 @@ import (
 	"gocv.io/x/gocv"
 )
 
-func ApplyBinarization(img *cv.Mat) (*cv.Mat, error) {
-	if img == nil {
-		return nil, fmt.Errorf("input image is nil")
+func ApplyBinarization(blurred *cv.Mat) (*cv.Mat, error) {
+	if blurred == nil {
+		return nil, fmt.Errorf("input blurred is nil")
 	}
-	defer img.Release()
+	defer blurred.Release()
 
 	binary := cv.NewMat()
-	cv.Threshold(img, binary, 0, 255, cv.ThreshBinary)
+	cv.Threshold(blurred, binary, 0, 255, cv.ThreshBinary)
 
 	if binary == nil {
 		return nil, fmt.Errorf("failed to apply binarization")
