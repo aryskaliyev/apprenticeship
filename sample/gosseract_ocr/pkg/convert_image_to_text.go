@@ -1,6 +1,7 @@
 package pkg
 
 import (
+	"fmt"
 	"gocv.io/x/gocv"
 	"ocrx/pkg/preprocessing"
 	"ocrx/pkg/utils"
@@ -13,7 +14,7 @@ func ConvertImageToText(readFilePath, writeFilePath string) error {
 	}
 	defer img.Close()
 
-	gray, err := preprocessing.ConvertImageToGrayScale(img)
+	gray, err := preprocessing.ConvertImageToGrayscale(img)
 	if err != nil {
 		return err
 	}
@@ -39,4 +40,5 @@ func ConvertImageToText(readFilePath, writeFilePath string) error {
 			return err
 		}
 	}
+	return nil
 }
