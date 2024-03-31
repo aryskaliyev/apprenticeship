@@ -5,7 +5,7 @@ import (
 	"gocv.io/x/gocv"
 )
 
-func SaveImage(img *gocv.Mat, newImagePath string) error {
+func WriteImage(img gocv.Mat, newImagePath string) error {
 	if img.Empty() {
 		return fmt.Errorf("input image is empty")
 	}

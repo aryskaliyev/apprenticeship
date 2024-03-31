@@ -5,7 +5,7 @@ import (
 	"gocv.io/x/gocv"
 )
 
-func ReadImage(imagePath string) (*gocv.Mat, error) {
+func ReadImage(imagePath string) (gocv.Mat, error) {
 	// if path == ""
 	// if file exists in the path
 	// if correct format
