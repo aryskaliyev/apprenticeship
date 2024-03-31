@@ -2,7 +2,6 @@ package pkg
 
 import (
 	"fmt"
-	"gocv.io/x/gocv"
 	"ocrx/pkg/preprocessing"
 	"ocrx/pkg/utils"
 )
