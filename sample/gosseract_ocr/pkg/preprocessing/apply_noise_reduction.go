@@ -20,6 +20,6 @@ func ApplyNoiseReduction(gray gocv.Mat) (gocv.Mat, error) {
 	if blurred.Empty() {
 		return gocv.Mat{}, fmt.Errorf("failed to apply noise reduction")
 	}
-
+	defer blurred.Close()
 	return blurred, nil
 }

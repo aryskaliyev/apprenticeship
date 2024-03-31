@@ -20,5 +20,6 @@ func ApplyBinarization(blurred gocv.Mat) (gocv.Mat, error) {
 	if binary.Empty() {
 		return gocv.Mat{}, fmt.Errorf("failed to apply binarization")
 	}
+	defer binary.Close()
 	return binary, nil
 }
