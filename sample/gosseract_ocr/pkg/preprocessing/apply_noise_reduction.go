@@ -17,7 +17,7 @@ func ApplyNoiseReduction(gray gocv.Mat) (gocv.Mat, error) {
 	blurred := gocv.NewMat()
 	defer blurred.Close()
 
-	gocv.GaussianBlur(gray, &blurred, gocv.Point2f{X: 5, Y: 5}, sigmaX, sigmaY, gocv.BorderDefault)
+	gocv.GaussianBlur(gray, &blurred, gocv.Point{X: 5, Y: 5}, sigmaX, sigmaY, gocv.BorderDefault)
 
 	if blurred.Empty() {
 		return gocv.Mat{}, fmt.Errorf("failed to apply noise reduction")
