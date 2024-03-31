@@ -9,10 +9,11 @@ func ReadImage(imagePath string) (*gocv.Mat, error) {
 	// if path == ""
 	// if file exists in the path
 	// if correct format
-	img, err := gocv.IMRead(imagePath, gocv.IMReadColor)
-	if err != nil {
-		return nil, fmt.Errorf("Error loading image:", err)
+	img := gocv.IMRead(imagePath, gocv.IMReadColor)
+	if img.Empty() {
+		return gocv.Mat{}, fmt.Errorf("error reading image")
 	}
 	defer img.Close()
+
 	return img, nil
 }

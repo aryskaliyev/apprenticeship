@@ -6,14 +6,15 @@ import (
 )
 
 func SaveImage(img *gocv.Mat, newImagePath string) error {
-	if img == nil {
-		return fmt.Errorf("input image is nil")
+	if img.Empty() {
+		return fmt.Errorf("input image is empty")
 	}
 	defer img.Close()
 
-	err := gocv.SaveImage(newImagePath, img)
-	if err != nil {
-		return fmt.Errorf("Error saving image:", err)
+	success := gocv.SaveImage(newImagePath, img)
+	if !success {
+		return fmt.Errorf("Error writing to file")
 	}
+	fmt.Println("Success!")
 	return nil
 }
