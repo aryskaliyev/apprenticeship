@@ -7,7 +7,7 @@ import (
 
 var readCmd = &cobra.Command{
 	Use:   "read",
-	Short: "Read image from path",
+	Short: "Read file from path",
 	Long:  `OCRX read command is used to read image from the path`,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
