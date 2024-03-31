@@ -6,8 +6,8 @@ import (
 )
 
 func ApplyBinarization(blurred gocv.Mat) (gocv.Mat, error) {
-	if blurred == nil {
-		return gocv.Mat{}, fmt.Errorf("input blurred is nil")
+	if blurred.Empty() {
+		return gocv.Mat{}, fmt.Errorf("input blurred is empty")
 	}
 	defer blurred.Close()
 

@@ -6,18 +6,18 @@ import (
 )
 
 func ApplyNoiseReduction(gray gocv.Mat) (gocv.Mat, error) {
-	if gray == nil {
-		return gocv.Mat{}, fmt.Errorf("input gray is nil")
+	if gray.Empty() {
+		return gocv.Mat{}, fmt.Errorf("input gray is empty")
 	}
 	defer gray.Close()
 
-	kernelSize := gocv.Size{Width: 5, Height: 5}
-	sigma := 0.0
+	sigmaX := 0.0
+	sigmaY := 0.0
 
 	blurred := gocv.NewMat()
-	gocv.GaussianBlur(gray, blurred, kernelSize, sigma)
+	gocv.GaussianBlur(gray, &blurred, image.Point{X: 5, Y: 5}, sigmaX, sigmaY, gocv.BorderDefault)
 
-	if blurred == nil {
+	if blurred.Empty() {
 		return gocv.Mat{}, fmt.Errorf("failed to apply noise reduction")
 	}
 

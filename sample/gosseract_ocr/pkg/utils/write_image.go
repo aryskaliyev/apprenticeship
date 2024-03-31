@@ -15,4 +15,5 @@ func SaveImage(img *gocv.Mat, newImagePath string) error {
 	if err != nil {
 		return fmt.Errorf("Error saving image:", err)
 	}
+	return nil
 }

@@ -6,13 +6,13 @@ import (
 )
 
 func ConvertImageToGrayscale(img gocv.Mat) (gocv.Mat, error) {
-	if img == nil {
-		return gocv.Mat{}, fmt.Errorf("input image is nil")
+	if img.Empty() {
+		return gocv.Mat{}, fmt.Errorf("input image is empty")
 	}
-	defer img.Release()
+	defer img.Close()
 
 	gray := gocv.NewGrayImageFromImage(img)
-	if gray == nil {
+	if gray.Empty() {
 		return gocv.Mat{}, fmt.Errorf("failed to convert to grayscale")
 	}
 	return gray, nil
