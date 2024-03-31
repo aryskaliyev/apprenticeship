@@ -5,20 +5,20 @@ import (
 	"gocv.io/x/gocv"
 )
 
-func ApplyNoiseReduction(gray *cv.Mat) (*cv.Mat, error) {
+func ApplyNoiseReduction(gray gocv.Mat) (gocv.Mat, error) {
 	if gray == nil {
-		return nil, fmt.Errorf("input gray is nil")
+		return gocv.Mat{}, fmt.Errorf("input gray is nil")
 	}
-	defer gray.Release()
+	defer gray.Close()
 
-	kernelSize := cv.Size{Width: 5, Height: 5}
+	kernelSize := gocv.Size{Width: 5, Height: 5}
 	sigma := 0.0
 
-	blurred := cv.NewMat()
-	cv.GaussianBlur(gray, blurred, kernelSize, sigma)
+	blurred := gocv.NewMat()
+	gocv.GaussianBlur(gray, blurred, kernelSize, sigma)
 
 	if blurred == nil {
-		return nil, fmt.Errorf("failed to apply noise reduction")
+		return gocv.Mat{}, fmt.Errorf("failed to apply noise reduction")
 	}
 
 	return blurred, nil

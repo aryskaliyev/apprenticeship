@@ -1,12 +1,13 @@
 package pkg
 
 import (
+	"gocv.io/x/gocv"
 	"ocrx/pkg/preprocessing"
 	"ocrx/pkg/utils"
 )
 
 func ConvertImageToText(readFilePath, writeFilePath string) error {
-	img := cv.NewMat()
+	img := gocv.NewMat()
 	defer img.Release()
 	if img, err := utils.ReadImage(readFilePath); err != nil {
 		return err

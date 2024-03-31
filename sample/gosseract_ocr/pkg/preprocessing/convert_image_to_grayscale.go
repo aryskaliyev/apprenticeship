@@ -5,15 +5,15 @@ import (
 	"gocv.io/x/gocv"
 )
 
-func ConvertImageToGrayscale(img *cv.Mat) (*cv.Mat, error) {
+func ConvertImageToGrayscale(img gocv.Mat) (gocv.Mat, error) {
 	if img == nil {
-		return nil, fmt.Errorf("input image is nil")
+		return gocv.Mat{}, fmt.Errorf("input image is nil")
 	}
 	defer img.Release()
 
-	gray := cv.NewGrayImageFromImage(img)
+	gray := gocv.NewGrayImageFromImage(img)
 	if gray == nil {
-		return nil, fmt.Errorf("failed to convert to grayscale")
+		return gocv.Mat{}, fmt.Errorf("failed to convert to grayscale")
 	}
 	return gray, nil
 }

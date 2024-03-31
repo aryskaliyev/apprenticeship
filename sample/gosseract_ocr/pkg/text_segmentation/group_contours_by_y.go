@@ -1,5 +1,6 @@
 package text_segmentation
 
+/*
 import(
 	"fmt"
 	"gocv.io/x/gocv"
@@ -17,3 +18,4 @@ func GroupContoursByY(contours *cv.Mat) () {
 		if len()
 	}
 }
+*/

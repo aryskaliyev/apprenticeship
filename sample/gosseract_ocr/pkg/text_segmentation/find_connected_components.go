@@ -5,13 +5,13 @@ import (
 	"gocv.io/x/gocv"
 )
 
-func FindConnectedComponents(edges *cv.Mat) (*cv.Mat, error) {
+func FindConnectedComponents(edges *gocv.Mat) (*gocv.Mat, error) {
 	if edges == nil {
 		return nil, fmt.Errorf("input edges is nil")
 	}
 	defer edges.Release()
 
-	contours := cv.FindContours(edges)
+	contours := gocv.FindContours(edges)
 	if contours == nil {
 		return nil, fmt.Errorf("failed to find connected components")
 	}

@@ -5,11 +5,11 @@ import (
 	"gocv.io/x/gocv"
 )
 
-func ReadImage(imagePath string) (*cv.Mat, error) {
+func ReadImage(imagePath string) (*gocv.Mat, error) {
 	// if path == ""
 	// if file exists in the path
 	// if correct format
-	img, err := cv.LoadImage(imagePath)
+	img, err := gocv.LoadImage(imagePath)
 	if err != nil {
 		return nil, fmt.Errorf("Error loading image:", err)
 	}
