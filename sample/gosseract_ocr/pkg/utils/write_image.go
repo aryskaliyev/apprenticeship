@@ -11,7 +11,7 @@ func WriteImage(img gocv.Mat, newImagePath string) error {
 	}
 	defer img.Close()
 
-	success := gocv.SaveImage(newImagePath, img)
+	success := gocv.IMWrite(newImagePath, img)
 	if !success {
 		return fmt.Errorf("Error writing to file")
 	}
