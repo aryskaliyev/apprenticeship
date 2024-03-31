@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
+	"ocrx/pkg"
 )
 
 var readCmd = &cobra.Command{
@@ -12,13 +13,12 @@ var readCmd = &cobra.Command{
 	Long:  `OCRX read command is used to read image from the path`,
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
-		readFilePath := args[0]
-		img, err := utils.ReadImage(readFilePath)
+		err := pkg.ConvertImageToText(args[0], "")
 		if err != nil {
-			fmt.Errorf(color(err))
+			color.Red(err.Error())
 			return
 		}
-		fmt.Printf("The read command is called: %s\n", args[0])
+		color.Green("Success!")
 	},
 	Example: `ocrx read your/file/path.img`,
 }

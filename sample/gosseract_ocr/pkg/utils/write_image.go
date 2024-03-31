@@ -2,7 +2,7 @@ package utils
 
 import (
 	"fmt"
-	"gocv.io/cv"
+	"gocv.io/x/gocv"
 )
 
 func SaveImage(img *cv.Mat, newImagePath string) error {
