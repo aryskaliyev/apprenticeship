@@ -8,7 +8,7 @@ import (
 
 func ConvertImageToText(readFilePath, writeFilePath string) error {
 	img := gocv.NewMat()
-	defer img.Release()
+	defer img.Close()
 	if img, err := utils.ReadImage(readFilePath); err != nil {
 		return err
 	}
@@ -17,11 +17,11 @@ func ConvertImageToText(readFilePath, writeFilePath string) error {
 		return err
 	}
 
-	if img, err := preprocessing.ApplyNoiseReduction(gray); err != nil {
+	if img, err := preprocessing.ApplyNoiseReduction(img); err != nil {
 		return err
 	}
 
-	if img, err := preprocessing.ApplyBinarization(blurred); err != nil {
+	if img, err := preprocessing.ApplyBinarization(img); err != nil {
 		return err
 	}
 
