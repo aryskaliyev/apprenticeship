@@ -11,8 +11,8 @@ func ApplyBinarization(blurred gocv.Mat) (gocv.Mat, error) {
 	}
 	defer blurred.Close()
 
-	thresh := 0.0
-	maxval := 255.0
+	thresh := float32(0)
+	maxval := float32(255)
 
 	binary := gocv.NewMat()
 	gocv.Threshold(blurred, &binary, thresh, maxval, gocv.ThresholdBinary)
