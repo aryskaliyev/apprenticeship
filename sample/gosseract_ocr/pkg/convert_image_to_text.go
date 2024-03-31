@@ -7,23 +7,29 @@ import (
 )
 
 func ConvertImageToText(readFilePath, writeFilePath string) error {
-	img := gocv.NewMat()
+	img, err := utils.ReadImage(readFilePath)
+	if err != nil {
+		return err
+	}
 	defer img.Close()
-	if img, err := utils.ReadImage(readFilePath); err != nil {
-		return err
-	}
 
-	if img, err := preprocessing.ConvertImageToGrayScale(img); err != nil {
+	gray, err := preprocessing.ConvertImageToGrayScale(img)
+	if err != nil {
 		return err
 	}
+	defer gray.Close()
 
-	if img, err := preprocessing.ApplyNoiseReduction(img); err != nil {
+	blurred, err := preprocessing.ApplyNoiseReduction(img)
+	if err != nil {
 		return err
 	}
+	defer blurred.Close()
 
-	if img, err := preprocessing.ApplyBinarization(img); err != nil {
+	binary, err := preprocessing.ApplyBinarization(img)
+	if err != nil {
 		return err
 	}
+	defer binary.Close()
 
 	if writeFilePath == "" {
 		fmt.Println(binary)
