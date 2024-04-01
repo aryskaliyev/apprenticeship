@@ -1,4 +1,4 @@
-# Use official Ubuntu image
+# Use Ubuntu 20.04 as the base image
 FROM ubuntu:20.04
 
 # Set environment variable to prevent tzdata from prompting for user input
@@ -22,25 +22,37 @@ RUN apt-get update && apt-get install -y \
     libleptonica-dev \
     libpango1.0-dev \
     libcairo2-dev \
-    tesseract-ocr libtesseract-dev
+    tesseract-ocr \
+    libtesseract-dev
 
-# Clone OpenCV 4.8.1
-RUN git clone --branch 4.8.1 --depth 1 https://github.com/opencv/opencv.git /opencv && \
-    mkdir -p /opencv/build
+# Download and install Go version 1.22
+RUN wget -q https://dl.google.com/go/go1.22.linux-amd64.tar.gz && \
+    echo "3bc921a7fd74cf1d1343e54aaea30f5b50eb195f6d78fb17f01d589b6df4ef19  go1.22.linux-amd64.tar.gz" | sha256sum -c - && \
+    tar -C /usr/local -xzf go1.22.linux-amd64.tar.gz && \
+    rm go1.22.linux-amd64.tar.gz
 
-# Build OpenCV
-RUN cd /opencv/build && \
-    cmake \
-    -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D BUILD_TESTS=OFF \
-    -D BUILD_PERF_TESTS=OFF \
-    -D BUILD_EXAMPLES=OFF \
-    -D WITH_GTK=ON \
-    .. && \
-    make -j$(nproc) && \
-    make install && \
-    ldconfig
+# Set environment variables for Go
+ENV PATH="/usr/local/go/bin:${PATH}"
+ENV GOROOT="/usr/local/go"
+ENV GOPATH="/go"
 
-# Cleanup
-RUN rm -rf /opencv
+# Install GoCV
+RUN apt-get install -y libopencv-dev
+RUN go get -u -d gocv.io/x/gocv
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the Golang code and go.mod/go.sum files into the container
+COPY ./golang_code/* ./
+COPY ./golang_code/go.mod ./
+COPY ./golang_code/go.sum ./
+
+# Download and install Go dependencies
+RUN go mod download
+
+# Build the Golang code
+RUN go build -o app .
+
+# Set the entrypoint to run the Golang code
+CMD ["./app"]
