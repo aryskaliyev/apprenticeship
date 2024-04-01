@@ -13,7 +13,6 @@ func ReadImage(imagePath string) (gocv.Mat, error) {
 	if img.Empty() {
 		return gocv.Mat{}, fmt.Errorf("error reading image")
 	}
-	defer img.Close()
 
 	return img, nil
 }

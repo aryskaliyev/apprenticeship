@@ -16,6 +16,5 @@ func ConvertImageToGrayscale(img gocv.Mat) (gocv.Mat, error) {
 	if gray.Empty() {
 		return gocv.Mat{}, fmt.Errorf("failed to convert to grayscale")
 	}
-	defer gray.Close()
 	return gray, nil
 }

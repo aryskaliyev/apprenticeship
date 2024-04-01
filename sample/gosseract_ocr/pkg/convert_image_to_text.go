@@ -11,26 +11,21 @@ func ConvertImageToText(readFilePath, writeFilePath string) error {
 	if err != nil {
 		return err
 	}
-	defer img.Close()
 
 	gray, err := preprocessing.ConvertImageToGrayscale(img)
 	if err != nil {
 		return err
 	}
-	defer gray.Close()
 
-	blurred, err := preprocessing.ApplyNoiseReduction(img)
+/*	blurred, err := preprocessing.ApplyNoiseReduction(gray)
 	if err != nil {
 		return err
 	}
-	defer blurred.Close()
-
-	binary, err := preprocessing.ApplyBinarization(img)
+*/
+	binary, err := preprocessing.ApplyBinarization(gray)
 	if err != nil {
 		return err
 	}
-	defer binary.Close()
-
 	if writeFilePath == "" {
 		fmt.Println(binary)
 	} else {
